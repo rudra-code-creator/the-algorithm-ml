@@ -6,7 +6,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 # You may need to point this to a version of python 3.10
-PYTHONBIN="/opt/ee/python/3.10/bin/python3.10"
+PYTHONBIN=$(which python3)
 echo Using "PYTHONBIN=$PYTHONBIN"
 
 # Put venv in tmp, these things are not made to last, just rebuild.
@@ -22,4 +22,10 @@ pip --require-virtualenv install --no-deps -r images/requirements.txt
 
 ln -s "$(pwd)" "$VENV_PATH/lib/python3.10/site-packages/tml"
 
-echo "Now run source ${VENV_PATH}/bin/activate" to get going.
+echo "Now running script ${VENV_PATH}/bin/activate"
+
+cd ${VENV_PATH}/bin/
+chmod +x activate
+./activate
+
+
